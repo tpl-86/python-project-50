@@ -18,3 +18,9 @@ gendiff:
 
 reinstall:
 	python3 -m pip install dist/*.whl --force-reinstall
+
+test:
+	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov=hexlet_python_package --cov-report xml

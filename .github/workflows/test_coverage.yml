@@ -1,4 +1,4 @@
-name: Python CI
+name: Linter and tests
 
 on:
   - push
@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Run linter and pytest
+        run: |
+          make check
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v5.0.0
         if: github.ref_name == 'main'

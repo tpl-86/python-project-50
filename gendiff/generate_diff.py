@@ -10,8 +10,8 @@ def generate_diff(file1, file2):
     result = ''
     value1 = json.load(open(file1))
     value2 = json.load(open(file2))
-    union_values = sorted(list(set(value1.keys()) | set (value2.keys())))
-    inter_values = set(value1.keys()) & set (value2.keys())
+    union_values = sorted(list(set(value1.keys()) | set(value2.keys())))
+    inter_values = set(value1.keys()) & set(value2.keys())
     diff_values1 = set(value1.keys()) - set(value2.keys())
     for i in union_values:
         if is_value_diff(i, inter_values):

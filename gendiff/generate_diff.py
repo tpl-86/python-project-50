@@ -1,9 +1,9 @@
 import json
 
 
-def is_value_diff(value, values):
+def get_key_value(value, values):
     if value in values:
-        return True
+        return f'{value}: {values[value]}\n'
 
 
 def generate_diff(file1, file2):
@@ -14,14 +14,14 @@ def generate_diff(file1, file2):
     inter_values = set(value1.keys()) & set(value2.keys())
     diff_values1 = set(value1.keys()) - set(value2.keys())
     for i in union_values:
-        if is_value_diff(i, inter_values):
+        if i in inter_values:
             if value1[i] == value2[i]:
-                result += f'    {i}: {value1.get(i)}\n'
+                result += f'    {get_key_value(i, value1)}'
             else:
-                result += f'  - {i}: {value1.get(i)}\n'
-                result += f'  + {i}: {value2.get(i)}\n'
-        elif is_value_diff(i, diff_values1):
-            result += f'  - {i}: {value1.get(i)}\n'
+                result += f'  - {get_key_value(i, value1)}'
+                result += f'  + {get_key_value(i, value2)}'
+        elif i in diff_values1:
+            result += f'  - {get_key_value(i, value1)}'
         else:
-            result += f'  + {i}: {value2.get(i)}\n'
+            result += f'  + {get_key_value(i, value2)}'
     return f'{{\n{result}}}\n'.lower()

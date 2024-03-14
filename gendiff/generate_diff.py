@@ -1,4 +1,5 @@
 import json
+import yaml
 
 
 def get_key_value(value, values):
@@ -6,10 +7,18 @@ def get_key_value(value, values):
         return f'{value}: {values[value]}\n'
 
 
+def get_file_data(filename):
+    if filename.endswith('.yaml') or filename.endswith('.yml'):
+        data = yaml.safe_load(open(filename))
+    if filename.endswith('.json'):
+        data = json.load(open(filename))
+    return data
+
+
 def generate_diff(file1, file2):
     result = ''
-    value1 = json.load(open(file1))
-    value2 = json.load(open(file2))
+    value1 = get_file_data(file1)
+    value2 = get_file_data(file2)
     union_values = sorted(list(set(value1.keys()) | set(value2.keys())))
     inter_values = set(value1.keys()) & set(value2.keys())
     diff_values1 = set(value1.keys()) - set(value2.keys())

@@ -9,5 +9,5 @@ def get_path(file_name):
 
 
 def test_get_file_data():
-    filename = str(get_path('file1.yml'))
+    filename = str(get_path('test_get_file_data.yml'))
     assert get_file_data(filename) == {'host': 'hexlet.io', 'timeout': 50, 'proxy': '123.234.53.22', 'follow': False}

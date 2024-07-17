@@ -1,7 +1,7 @@
 import json
 import yaml
-from gendiff.stylish import stylish
 from gendiff.diff import diff
+from gendiff.formatting_functions.stylish import stylish
 
 
 def get_file_data(filename):
@@ -12,8 +12,8 @@ def get_file_data(filename):
     return data
 
 
-def generate_diff(file1, file2, formatter=stylish):
+def generate_diff(file1, file2, format_name=stylish):
     data1 = get_file_data(file1)
     data2 = get_file_data(file2)
     result = diff(data1, data2)
-    return formatter(result)
+    return format_name(result)

@@ -1,7 +1,7 @@
 import itertools
 
 
-def format(value):
+def format_value(value):
     if isinstance(value, bool):
         return str(value).lower()
     if value is None:
@@ -13,7 +13,7 @@ def stylish(value, replacer=' ', spaces_count=4):
     def iter_(current_value, depth):
         if (not isinstance(current_value, dict)
                 and not isinstance(current_value, list)):
-            return format(current_value)
+            return format_value(current_value)
         deep_indent_size = depth * spaces_count - 2
         deep_indent = replacer * deep_indent_size
         current_indent = replacer * (depth * spaces_count - 4)

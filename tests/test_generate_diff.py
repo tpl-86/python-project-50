@@ -1,4 +1,5 @@
 from gendiff.generate_diff import generate_diff
+from gendiff.formatting_functions.stylish import stylish
 from pathlib import Path
 
 
@@ -11,11 +12,11 @@ def test_generate_diff():
     file1 = str(get_path('file1.json'))
     file2 = str(get_path('file2.json'))
     expected = get_path('expected.txt')
-    assert generate_diff(file1, file2) + '\n' == open(expected).read()
+    assert generate_diff(file1, file2, stylish) + '\n' == open(expected).read()
 
 
 def test_generate_diff():
     file1 = str(get_path('file1.yml'))
     file2 = str(get_path('file2.yml'))
     expected = get_path('expected.txt')
-    assert generate_diff(file1, file2) + '\n' == open(expected).read()
+    assert generate_diff(file1, file2, stylish) + '\n' == open(expected).read()

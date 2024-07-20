@@ -14,3 +14,10 @@ def test_plain():
     file2 = str(get_path('file2.yml'))
     expected = get_path('expected_plain.txt')
     assert generate_diff(file1, file2, plain) + '\n' == open(expected).read()
+    
+    
+def test_plain():
+    file1 = str(get_path('file1.json'))
+    file2 = str(get_path('file2.json'))
+    expected = get_path('expected_plain.txt')
+    assert generate_diff(file1, file2, plain) + '\n' == open(expected).read()
